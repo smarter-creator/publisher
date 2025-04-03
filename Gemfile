@@ -38,7 +38,7 @@ gem "activestorage", "7.1.5.1"
 gem "rails-dom-testing", "2.2.0"
 gem "rails-html-sanitizer", "1.6.2"
 gem "bootsnap"
-gem 'concurrent-ruby', '~> 1.2.0'
+gem 'concurrent-ruby', '~> 1.3.5'
 gem 'minitest', '~> 5.25'
 
 # Sprockets for asset pipeline management (using version 3.5.2)
