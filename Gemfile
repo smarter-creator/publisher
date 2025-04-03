@@ -72,5 +72,5 @@ group :test do
   
   # Use the latest stable version of RSpec
   gem 'rspec', '~> 3.10'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails', '~> 7.1'
 end
