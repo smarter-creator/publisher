@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- Event Title -->
+      <h2 class="text-center"><%= @event.title %></h2>
+      
+      <!-- Event Time Details -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p><strong>Start Time:</strong> <%= @event.start_datetime.strftime("%B %d, %Y %I:%M %p") %></p>
+          <p><strong>End Time:</strong> <%= @event.end_datetime.strftime("%B %d, %Y %I:%M %p") %></p>
+
+          <% if @event.recurrence_rule.present? %>
+            <h3 class="mt-3">Occurrences</h3>
+            <ul class="list-group">
+              <% @event&.event_occurrences.each do |occurrence| %>
+                <li class="list-group-item">
+                  <%= occurrence&.occurrence_datetime&.strftime("%B %d, %Y %I:%M %p") %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-4 text-center">
+        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning btn-sm mr-2" %>
+        <%= link_to "Back to Event", publisher_path(@event.publisher_id), class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

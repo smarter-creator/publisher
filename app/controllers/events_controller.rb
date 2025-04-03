@@ -1,59 +1,54 @@
 class EventsController < ApplicationController
-  before_action :set_publisher
-  before_action :set_event, only: [ :edit, :update, :destroy, :create ]
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_publishers, only: %i[new edit create update]
+
+  def index
+    @events = Event.includes(:publisher).all
+  end
+
+  def show
+  end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to @event, notice: "Event was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to @event, notice: "Event was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def destroy
-    if @event
-      @event.destroy
-      redirect_back fallback_location: publisher_path(@event.publisher_id), notice: "Event was successfully deleted."
-    else
-      redirect_back fallback_location: publisher_path(@event.publisher_id), alert: "Event not found."
-    end
+    @event.destroy
+    redirect_to publishers_url(@event.publisher_id), notice: "Event was successfully deleted."
   end
 
-
+  private
 
   def set_event
-    @event = Event.find_by(id: params[:id])
+    @event = Event.find(params[:id])
   end
-    def index
-      @events = Event.all
-    end
 
-    def new
-      @event = Event.new
-    end
+  def set_publishers
+    @publishers = Publisher.all
+  end
 
-    def create
-      @event = Event.new(event_params)
-      if @event.save
-        redirect_to publisher_path(@event.publisher_id), notice: "Event created successfully."
-      else
-        render :new
-      end
-    end
-
-    def edit
-      if @event.nil?
-        redirect_to publishers_path, alert: "Event not found."
-      end
-    end
-
-    def update
-      if @event.update(event_params)
-        redirect_to publisher_path(@event.publisher), notice: "Event was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-
-    def set_publisher
-      @publisher = Publisher.find_by_id(params[:publisher_id])
-    end
-
-    private
-
-    def event_params
-      params.require(:event).permit(:title, :start_datetime, :end_datetime, :recurrence, :publisher_id)
-    end
+  def event_params
+    params.require(:event).permit(:title, :start_datetime, :end_datetime, :recurrence_rule, :publisher_id, :recurring)
+  end
 end

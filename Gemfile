@@ -1,61 +1,76 @@
 source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.2", ">= 7.2.2.1"
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-# Use sqlite3 as the database for Active Record
+# Rails version
+gem "rails", "~> 7.1.1"
+
+# Bundler for managing dependencies
+gem "bundler", ">= 1.3.5"
+
+# Rake for task management
+gem "rake", ">= 0.9.6"
+
+# Recurring Select Gem (currently at 4.0.0.rc1, but specifying the latest stable version if available)
+gem "recurring_select", "~> 4.0.0.rc1"
+
+
+
+# Thin web server (used in production)
+
+# SASS/SCSS for styling (used in asset pipeline)
+gem "sass-rails", "~> 6.0.0"
+
+# Active Support
+gem "activesupport", "7.1.5.1"
+gem "puma"
 gem "sqlite3", ">= 1.4"
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-gem 'recurring_select'
-# Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
+gem 'matrix', '~> 0.4.2'
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+# ActiveRecord and related gems
+gem "activerecord", "7.1.5.1"
+gem "actionpack", "7.1.5.1"
+gem "actionview", "7.1.5.1"
+gem "actionmailer", "7.1.5.1"
+gem "actioncable", "7.1.5.1"
+gem "activemodel", "7.1.5.1"
+gem "activejob", "7.1.5.1"
+gem "activestorage", "7.1.5.1"
+gem "rails-dom-testing", "2.2.0"
+gem "rails-html-sanitizer", "1.6.2"
+gem "bootsnap"
+gem 'concurrent-ruby', '~> 1.2.0'
+gem 'minitest', '~> 5.25'
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+# Sprockets for asset pipeline management (using version 3.5.2)
+gem "sprockets", "4.2.1"
+gem "sprockets-rails", "3.5.2"
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+# Other gems
+gem "ice_cube", ">= 0.11"
+gem "jquery-rails", "~> 4.6.0"
+gem "sassc-rails", ">= 2.1.1"
+gem "tzinfo", "~> 2.0.6"
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-
+# Testing dependencies
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
-
-  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
 
+# Development gems
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
-  # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
   gem "error_highlight", ">= 0.4.0", platforms: [ :ruby ]
 end
 
+# Test gems
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+  
+  # Use the latest stable version of RSpec
+  gem 'rspec', '~> 3.10'
+  gem 'rspec-rails', '~> 5.0'
 end

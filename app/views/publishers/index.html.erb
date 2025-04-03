@@ -1,73 +1,29 @@
-<div class="container-xl pt-3">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Publishers</h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#publisherModal">
-      Add Publisher
-    </button>
-  </div>
+<div class="container mt-4">
+  <h1 class="mb-3">Publishers</h1>
+  <a href="<%= new_publisher_path %>" class="btn btn-primary mb-3">New Publisher</a>
 
-  <table class="table">
-    <thead>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
       <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Actions</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @publishers.each do |publisher| %>
         <tr>
-          <td><%= link_to publisher.title, publisher_path(publisher) %></td>
+          <td><%= link_to publisher.title, publisher, class: "text-decoration-none" %></td>
           <td><%= publisher.description %></td>
-          <td class="d-flex" style="gap: 1rem;">        <%= link_to "Edit", edit_publisher_path(publisher), class: "btn btn-warning btn-sm" %>
- <%= button_to "Delete", publisher_path(publisher), 
-  method: :delete, 
-  data: { confirm: "Are you sure?" }, 
-  class: "btn btn-danger btn-sm" %>
-
-
+          <td class="d-flex" style="gap: 1rem;">
+            <a href="<%= edit_publisher_path(publisher) %>" class="btn btn-sm btn-warning">Edit</a>
+            <%= button_to "Delete", publisher_path(publisher), 
+            method: :delete, 
+            data: { confirm: "Are you sure?" }, 
+            class: "btn btn-danger btn-sm" %>      
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <div class="modal fade" id="publisherModal" tabindex="-1" aria-labelledby="publisherModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="publisherModalLabel">Add Publisher</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= form_with model: @publisher, local: true, html: { class: "needs-validation", novalidate: true } do |f| %>
-            <% if @publisher.errors.any? %>
-              <div class="alert alert-danger">
-                <h4><%= pluralize(@publisher.errors.count, "error") %> prohibited this publisher from being saved:</h4>
-                <ul>
-                  <% @publisher.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
-            <div class="mb-3">
-              <%= f.label :title, "Publisher Title", class: "form-label" %>
-              <%= f.text_field :title, class: "form-control", required: true %>
-            </div>
-
-            <div class="mb-3">
-              <%= f.label :description, "Description", class: "form-label" %>
-              <%= f.text_area :description, class: "form-control", rows: 4 %>
-            </div>
-
-            <div class="d-grid">
-              <%= f.submit "Save Publisher", class: "btn btn-primary" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
