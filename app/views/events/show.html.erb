@@ -1,8 +1,8 @@
-<div class="container mt-4">
+<div class="container mt-4 mb-5">
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <!-- Event Title -->
-      <h2 class="text-center"><%= @event.title %></h2>
+      <h2 class=""><%= @event.title %></h2>
       
       <!-- Event Time Details -->
       <div class="card shadow-sm">
@@ -24,9 +24,9 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="mt-4 text-center">
-        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning btn-sm mr-2" %>
+      <div class="mt-4">
         <%= link_to "Back to Event", publisher_path(@event.publisher_id), class: "btn btn-secondary" %>
+        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning ml-4" %>
       </div>
     </div>
   </div>

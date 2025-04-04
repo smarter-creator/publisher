@@ -1,4 +1,5 @@
 <div class="container mt-4">
+  <h1 class="mb-4"><%= @event.new_record? ? "Create Event" : "Edit Event" %></h1>
   <%= form_with model: @event, local: true, class: "card p-4 shadow" do |form| %>
     
     <% if @event.errors.any? %>
@@ -16,12 +17,12 @@
       <%= form.text_field :title, class: "form-control" %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 flex items-center gap-2">
       <%= form.label :start_datetime, class: "form-label" %>
       <%= form.datetime_select :start_datetime, class: "form-control" %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 flex items-center gap-2">
       <%= form.label :end_datetime, class: "form-label" %>
       <%= form.datetime_select :end_datetime, class: "form-control" %>
     </div>
@@ -78,7 +79,12 @@
 
     recurringCheckbox.addEventListener("change", toggleRecurrenceSection);
     toggleRecurrenceSection();
-
+    [1,2,3,4,5].forEach((value)=>{
+      const item = document.getElementById(`event_end_datetime_${value}i`);
+      const item2 = document.getElementById(`event_start_datetime_${value}i`);
+      item.classList.add("form-control","max-w-max");
+      item2.classList.add("form-control","max-w-max");
+    })
     
   });
  
