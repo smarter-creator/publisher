@@ -42,7 +42,7 @@ gem 'concurrent-ruby', '~> 1.2.0'
 gem 'minitest', '~> 5.25'
 
 # Sprockets for asset pipeline management (using version 3.5.2)
-gem "sprockets", "4.2.1"
+gem "sprockets", "4.2.2"
 gem "sprockets-rails", "3.5.2"
 
 # Other gems
