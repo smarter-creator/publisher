@@ -35,7 +35,7 @@ gem "actioncable", "7.1.5.1"
 gem "activemodel", "7.1.5.1"
 gem "activejob", "7.1.5.1"
 gem "activestorage", "7.1.5.1"
-gem "rails-dom-testing", "2.2.0"
+gem "rails-dom-testing", "2.3.0"
 gem "rails-html-sanitizer", "1.6.2"
 gem "bootsnap"
 gem 'concurrent-ruby', '~> 1.2.0'
