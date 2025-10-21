@@ -71,6 +71,6 @@ group :test do
   gem 'webdrivers'
   
   # Use the latest stable version of RSpec
-  gem 'rspec', '~> 3.10'
+  gem 'rspec', '~> 3.13'
   gem 'rspec-rails', '~> 5.0'
 end
